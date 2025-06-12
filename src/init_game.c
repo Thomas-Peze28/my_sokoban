@@ -16,6 +16,7 @@ int init_game(game_t *game, char **argv)
     game->box_count = 0;
     game->storage_count = 0;
     game->valid_boxes = 0;
+    game->move_count = 0;
     game->height = count_line(argv[1]);
     game->width = get_max_length(argv[1]);
     load_map(argv[1], game);
@@ -31,4 +32,5 @@ void reset_game(game_t *game)
         for (int j = 0; game->map[i][j] != '\0'; j++)
             game->map[i][j] = game->map_copy[i][j];
     find_player(game);
+    game->move_count = 0;
 }

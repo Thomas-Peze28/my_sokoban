@@ -48,6 +48,7 @@ int display_map(game_t *game)
             color_cell(game->map[y][x], y, x);
         }
     }
+    mvprintw(game->height, 0, "Moves: %d", game->move_count);
     refresh();
     return 0;
 }

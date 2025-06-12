@@ -22,6 +22,7 @@ typedef struct game_s {
     int box_count;
     int storage_count;
     int valid_boxes;
+    int move_count;
 } game_t;
 
 

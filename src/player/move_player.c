@@ -31,6 +31,7 @@ int check_box_move(game_t *game, int coords[2], int delta[2])
         game->map_copy[box_y][box_x] == 'O') {
         game->map[box_y][box_x] = 'X';
         check_if_storage(game);
+        game->move_count++;
     } else {
         return 1;
     }
@@ -50,4 +51,5 @@ void move_player(game_t *game, int dy, int dx)
     game->map[new_coords[0]][new_coords[1]] = 'P';
     game->player_y = new_coords[0];
     game->player_x = new_coords[1];
+    game->move_count++;
 }
