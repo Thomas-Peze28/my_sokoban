@@ -36,6 +36,7 @@ int display_map(game_t *game)
     int term_height = 0;
     int term_width = 0;
 
+    game->elapsed_time = difftime(time(NULL), game->start_time);
     clear();
     getmaxyx(stdscr, term_height, term_width);
     if (term_height < game->height || term_width < game->width) {
@@ -48,7 +49,8 @@ int display_map(game_t *game)
             color_cell(game->map[y][x], y, x);
         }
     }
-    mvprintw(game->height, 0, "Moves: %d", game->move_count);
+    mvprintw(game->height, 0, "Moves: %d | Time: %.1fs", game->move_count,
+        game->elapsed_time);
     refresh();
     return 0;
 }

@@ -10,8 +10,7 @@
 
     #include "my.h"
     #include <ncurses.h>
-
-
+    #include <time.h>
 typedef struct game_s {
     char **map;
     char **map_copy;
@@ -23,6 +22,8 @@ typedef struct game_s {
     int storage_count;
     int valid_boxes;
     int move_count;
+    time_t start_time;
+    double elapsed_time;
 } game_t;
 
 

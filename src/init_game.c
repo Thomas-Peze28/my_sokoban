@@ -33,4 +33,5 @@ void reset_game(game_t *game)
             game->map[i][j] = game->map_copy[i][j];
     find_player(game);
     game->move_count = 0;
+    game->start_time = time(NULL);
 }

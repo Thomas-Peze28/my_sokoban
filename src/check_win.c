@@ -11,10 +11,11 @@ void print_win(game_t *game)
 {
     if (check_win(game) != 1)
         return;
-    usleep(3000000);
+    sleep(2);
     clear();
     mvprintw(LINES / 2, COLS / 2 - 5, "You Win!");
     refresh();
+    nodelay(stdscr, FALSE);
     getch();
 }
 

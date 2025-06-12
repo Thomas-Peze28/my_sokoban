@@ -20,6 +20,7 @@ int game_loop(game_t *game)
             reset_game(game);
         check_player_move(ch, game);
         display_map(game);
+        usleep(10000);
     }
     return 0;
 }
@@ -46,6 +47,7 @@ int main(int argc, char **argv)
     if (error_handling(game) == 84)
         return 84;
     init_ncurses();
+    game->start_time = time(NULL);
     game_loop(game);
     print_win(game);
     endwin();
