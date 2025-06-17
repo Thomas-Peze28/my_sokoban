@@ -16,6 +16,15 @@ int have_csfml_flag(int argc, char **argv)
     return 0;
 }
 
+void init_font(game_t *game)
+{
+    game->csfml->font = sfFont_createFromFile("assets/Roboto-Black.ttf");
+    game->csfml->text = sfText_create();
+    sfText_setFont(game->csfml->text, game->csfml->font);
+    sfText_setCharacterSize(game->csfml->text, 24);
+    sfText_setFillColor(game->csfml->text, sfWhite);
+}
+
 int init_csfml(game_t *game)
 {
     game->csfml = malloc(sizeof(csfml_t));
@@ -36,5 +45,6 @@ int init_csfml(game_t *game)
             game->csfml->cells[y][x] = sfRectangleShape_create();
         }
     }
+    init_font(game);
     return 0;
 }

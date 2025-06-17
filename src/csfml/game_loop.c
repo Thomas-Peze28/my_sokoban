@@ -27,6 +27,20 @@ void draw_cell(game_t *game, int coords[2], float cell_size,
     sfRenderWindow_drawRectangleShape(game->csfml->window, rect, NULL);
 }
 
+int print_move_time(game_t *game)
+{
+    char info[128];
+    double elapsed = difftime(time(NULL), game->start_time);
+    sfVector2f pos = {10, WIN_HEIGHT - 40};
+
+    snprintf(info, sizeof(info), "Moves : %d | Time : %.1fs",
+    game->move_count, elapsed);
+    sfText_setString(game->csfml->text, info);
+    sfText_setPosition(game->csfml->text, pos);
+    sfRenderWindow_drawText(game->csfml->window, game->csfml->text, NULL);
+    return 0;
+}
+
 int display_map_csfml(game_t *game)
 {
     float cell_size = WIN_WIDTH / (float)game->width;
@@ -44,6 +58,7 @@ int display_map_csfml(game_t *game)
             (float[2]){offset_x, offset_y});
         }
     }
+    print_move_time(game);
     return 0;
 }
 
@@ -80,6 +95,10 @@ int csfml_game_loop(game_t *game)
         sfRenderWindow_clear(game->csfml->window, sfColor_fromRGB(50, 50, 50));
         display_map_csfml(game);
         sfRenderWindow_display(game->csfml->window);
+        if (print_win_csfml(game) == 1) {
+            sfRenderWindow_close(game->csfml->window);
+            return 0;
+        }
     }
     return 0;
 }

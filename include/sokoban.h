@@ -75,5 +75,6 @@ int display_map_csfml(game_t *game);
 void free_map(char **map, int height);
 void free_csfml_cells(game_t *game);
 int csfml_game_loop(game_t *game);
+int print_win_csfml(game_t *game);
 
 #endif /* SOKOBAN_H */
