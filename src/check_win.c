@@ -14,6 +14,7 @@ void print_win(game_t *game)
     sleep(2);
     clear();
     mvprintw(LINES / 2, COLS / 2 - 5, "You Win!");
+    play_sound("assets/victory.wav");
     refresh();
     nodelay(stdscr, FALSE);
     getch();

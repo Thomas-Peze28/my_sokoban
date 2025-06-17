@@ -34,6 +34,31 @@ void free_map(char **map, int height)
     free(map);
 }
 
+int run_csfml_mode(game_t *game)
+{
+    game->start_time = time(NULL);
+    init_csfml(game);
+    csfml_game_loop(game);
+    free_csfml_cells(game);
+    free_map(game->map, game->height);
+    free_map(game->map_copy, game->height);
+    free(game);
+    return 0;
+}
+
+int run_ncurses_mode(game_t *game)
+{
+    init_ncurses();
+    game->start_time = time(NULL);
+    game_loop(game);
+    print_win(game);
+    endwin();
+    free_map(game->map, game->height);
+    free_map(game->map_copy, game->height);
+    free(game);
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
     game_t *game = NULL;
@@ -46,13 +71,9 @@ int main(int argc, char **argv)
     init_game(game, argv);
     if (error_handling(game) == 84)
         return 84;
-    init_ncurses();
-    game->start_time = time(NULL);
-    game_loop(game);
-    print_win(game);
-    endwin();
-    free_map(game->map, game->height);
-    free_map(game->map_copy, game->height);
-    free(game);
-    return 0;
+    if (argc > 2 && have_csfml_flag(argc, argv) == 1) {
+        return run_csfml_mode(game);
+    } else {
+        return run_ncurses_mode(game);
+    }
 }

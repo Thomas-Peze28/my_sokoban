@@ -7,6 +7,15 @@
 
 #include "sokoban.h"
 
+void play_sound(const char *filename)
+{
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        execlp("aplay", "aplay", "-q", filename, NULL);
+    }
+}
+
 int check_if_storage(game_t *game)
 {
     if (game->map_copy[game->player_y][game->player_x] == 'O')
@@ -33,6 +42,7 @@ int check_box_move(game_t *game, int coords[2], int delta[2])
         check_if_storage(game);
         game->move_count++;
     } else {
+        play_sound("assets/collision.wav");
         return 1;
     }
     return 0;
@@ -43,13 +53,16 @@ void move_player(game_t *game, int dy, int dx)
     int new_coords[2] = {game->player_y + dy, game->player_x + dx};
     int dir_coords[2] = {dy, dx};
 
-    if (game->map[new_coords[0]][new_coords[1]] == '#')
+    if (game->map[new_coords[0]][new_coords[1]] == '#') {
+        play_sound("assets/collision.wav");
         return;
+    }
     if (check_box_move(game, new_coords, dir_coords) == 1)
         return;
     check_if_storage(game);
     game->map[new_coords[0]][new_coords[1]] = 'P';
     game->player_y = new_coords[0];
     game->player_x = new_coords[1];
+    play_sound("assets/footstep.wav");
     game->move_count++;
 }

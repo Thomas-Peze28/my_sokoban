@@ -49,7 +49,7 @@ int display_map(game_t *game)
             color_cell(game->map[y][x], y, x);
         }
     }
-    mvprintw(game->height, 0, "Moves: %d | Time: %.1fs", game->move_count,
+    mvprintw(term_height - 1, 0, "Moves: %d | Time: %.1fs", game->move_count,
         game->elapsed_time);
     refresh();
     return 0;

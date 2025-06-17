@@ -20,6 +20,11 @@ SRC	=	src/main.c	\
 		src/player/check_player_move.c	\
 		src/error_handling/args_handling.c	\
 		src/error_handling/map_handling.c	\
+		src/error_handling/sounds_handling.c	\
+		src/csfml/free_cells.c	\
+		src/csfml/game_loop.c	\
+		src/csfml/get_color.c	\
+		src/csfml/init_csfml.c	\
 
 
 NAME	=	my_sokoban
@@ -27,6 +32,8 @@ NAME	=	my_sokoban
 OBJ	=	$(SRC:.c=.o)
 
 CFLAGS = -I./include/ -L./lib/my -lmy -Wall -Wextra -lncurses
+
+CFLAGS += -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
 all: build_lib $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS)

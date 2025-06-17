@@ -26,7 +26,7 @@ int count_player(game_t *game)
     return player_count;
 }
 
-int error_handling(game_t *game)
+int check_map_elements(game_t *game)
 {
     if (game->map == NULL)
         return 84;
@@ -45,6 +45,18 @@ int error_handling(game_t *game)
     if (count_player(game) != 1) {
         my_putstr("Error: Invalid number of players.\n");
         return 84;
+    }
+    return 0;
+}
+
+int error_handling(game_t *game)
+{
+    int result = check_map_elements(game);
+
+    if (result != 0)
+        return result;
+    if (have_sound_file() == 0) {
+        my_putstr("Warning: No sound files found.\n");
     }
     return 0;
 }
