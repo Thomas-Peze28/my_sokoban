@@ -25,6 +25,28 @@ void init_font(game_t *game)
     sfText_setFillColor(game->csfml->text, sfWhite);
 }
 
+void init_texture(game_t *game)
+{
+    game->csfml->wall_texture = sfTexture_createFromFile(
+        "assets/wall.png", NULL);
+    game->csfml->player_texture = sfTexture_createFromFile(
+        "assets/player.png", NULL);
+    game->csfml->box_texture = sfTexture_createFromFile(
+        "assets/box.png", NULL);
+    game->csfml->storage_texture = sfTexture_createFromFile(
+        "assets/storage.png", NULL);
+    game->csfml->floor_texture = sfTexture_createFromFile(
+        "assets/floor.png", NULL);
+    game->csfml->cells_sprites = malloc(sizeof(sfSprite**) * game->height);
+    for (int y = 0; y < game->height; y++) {
+        game->csfml->cells_sprites[y] = malloc(
+            sizeof(sfSprite*) * game->width);
+        for (int x = 0; x < game->width; x++) {
+            game->csfml->cells_sprites[y][x] = sfSprite_create();
+        }
+    }
+}
+
 int init_csfml(game_t *game)
 {
     game->csfml = malloc(sizeof(csfml_t));
@@ -37,14 +59,7 @@ int init_csfml(game_t *game)
         "Sokoban", sfResize | sfClose, NULL);
     if (!game->csfml->window)
         return 84;
-    game->csfml->cells = malloc(sizeof(sfRectangleShape*) * game->height);
-    for (int y = 0; y < game->height; y++) {
-        game->csfml->cells[y] = malloc(sizeof(sfRectangleShape*)
-            * game->width);
-        for (int x = 0; x < game->width; x++) {
-            game->csfml->cells[y][x] = sfRectangleShape_create();
-        }
-    }
+    init_texture(game);
     init_font(game);
     return 0;
 }

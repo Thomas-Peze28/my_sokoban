@@ -7,26 +7,6 @@
 
 #include "sokoban.h"
 
-void draw_cell(game_t *game, int coords[2], float cell_size,
-    float offsets[2])
-{
-    int x = coords[0];
-    int y = coords[1];
-    float offset_x = offsets[0];
-    float offset_y = offsets[1];
-    char cell = game->map[y][x];
-    sfRectangleShape *rect = game->csfml->cells[y][x];
-    sfVector2f position = {
-        offset_x + x * cell_size,
-        offset_y + y * cell_size
-    };
-
-    sfRectangleShape_setPosition(rect, position);
-    sfRectangleShape_setSize(rect, (sfVector2f){cell_size, cell_size});
-    sfRectangleShape_setFillColor(rect, get_csfml_color(cell));
-    sfRenderWindow_drawRectangleShape(game->csfml->window, rect, NULL);
-}
-
 int print_move_time(game_t *game)
 {
     char info[128];

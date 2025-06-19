@@ -24,7 +24,11 @@ typedef struct csfml_s {
     sfText *text;
     int width;
     int height;
-    sfRectangleShape ***cells;
+    sfTexture *wall_texture;
+    sfTexture *player_texture;
+    sfTexture *box_texture;
+    sfTexture *storage_texture;
+    sfTexture *floor_texture;
     sfSprite ***cells_sprites;
 } csfml_t;
 
@@ -76,5 +80,6 @@ void free_map(char **map, int height);
 void free_csfml_cells(game_t *game);
 int csfml_game_loop(game_t *game);
 int print_win_csfml(game_t *game);
+void draw_cell(game_t *game, int coords[2], float cell_size, float offsets[2]);
 
 #endif /* SOKOBAN_H */

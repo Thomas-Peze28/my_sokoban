@@ -26,6 +26,7 @@ SRC	=	src/main.c	\
 		src/csfml/get_color.c	\
 		src/csfml/init_csfml.c	\
 		src/csfml/print_win.c	\
+		src/csfml/draw_cells.c	\
 
 
 NAME	=	my_sokoban
