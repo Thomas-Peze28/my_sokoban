@@ -81,5 +81,16 @@ void free_csfml_cells(game_t *game);
 int csfml_game_loop(game_t *game);
 int print_win_csfml(game_t *game);
 void draw_cell(game_t *game, int coords[2], float cell_size, float offsets[2]);
+char **generate_random_map(int width, int height, int box_count);
+
+int map_have_player(char **map, int width, int height);
+void check_player_space(char **map, int coords[2], int width, int height);
+void place_player(char **map, int width, int height);
+void add_wall(char **map, int coords[2], int width, int height);
+void fill_borders(char **map, int width, int height);
+void add_random_walls(char **map, int width, int height);
+void place_boxes_and_storages(char **map, int width,
+    int height, int box_count);
+int have_random_flag(char **argv);
 
 #endif /* SOKOBAN_H */

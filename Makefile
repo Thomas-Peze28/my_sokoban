@@ -27,6 +27,9 @@ SRC	=	src/main.c	\
 		src/csfml/init_csfml.c	\
 		src/csfml/print_win.c	\
 		src/csfml/draw_cells.c	\
+		src/map_generation/generate_map.c	\
+		src/map_generation/add_player.c	\
+		src/map_generation/add_walls.c	\
 
 
 NAME	=	my_sokoban
