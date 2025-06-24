@@ -85,6 +85,9 @@ Exemple :
 # O     #  #
 ############
 ```
+
+## Capture d'écran
+
 ![Screenshot from 2025-06-24 15-08-34](https://github.com/user-attachments/assets/e4194157-bd5e-45da-bb55-31d0e8bc7c89)
 
 ![Screenshot from 2025-06-24 15-07-47](https://github.com/user-attachments/assets/72d845f0-33be-4807-96dd-08023157e757)
