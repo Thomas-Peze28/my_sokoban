@@ -36,8 +36,8 @@ int check_box_move(game_t *game, int coords[2], int delta[2])
 
     if (game->map[new_y][new_x] != 'X')
         return 0;
-    if (game->map[box_y][box_x] == ' ' ||
-        game->map_copy[box_y][box_x] == 'O') {
+    if ((game->map[box_y][box_x] == ' ' || game->map_copy[box_y][box_x] == 'O')
+        && game->map[box_y][box_x] != 'X') {
         game->map[box_y][box_x] = 'X';
         check_if_storage(game);
         game->move_count++;
