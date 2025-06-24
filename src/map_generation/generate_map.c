@@ -17,9 +17,8 @@ int *find_random_space(char **map, int width, int height)
     while (found == 0) {
         coords[0] = 1 + rand() % (width - 2);
         coords[1] = 1 + rand() % (height - 2);
-        if (map[coords[1]][coords[0]] == ' ') {
+        if (map[coords[1]][coords[0]] == ' ')
             found = 1;
-        }
     }
     return coords;
 }
