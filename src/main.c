@@ -21,6 +21,7 @@ int game_loop(game_t *game)
         check_player_move(ch, game);
         display_map(game);
         usleep(10000);
+        print_lose(game);
     }
     return 0;
 }

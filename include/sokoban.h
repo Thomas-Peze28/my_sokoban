@@ -82,6 +82,7 @@ int csfml_game_loop(game_t *game);
 int print_win_csfml(game_t *game);
 void draw_cell(game_t *game, int coords[2], float cell_size, float offsets[2]);
 char **generate_random_map(int width, int height, int box_count);
+void print_lose(game_t *game);
 
 int map_have_player(char **map, int width, int height);
 void check_player_space(char **map, int coords[2], int width, int height);

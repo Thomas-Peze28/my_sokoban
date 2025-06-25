@@ -20,6 +20,18 @@ void print_win(game_t *game)
     getch();
 }
 
+void print_lose(game_t *game)
+{
+    if (is_all_boxes_movable(game) == 0)
+        return;
+    clear();
+    mvprintw(LINES / 2, COLS / 2 - 5, "You Lose!");
+    refresh();
+    nodelay(stdscr, FALSE);
+    getch();
+    reset_game(game);
+}
+
 int check_box_valid(game_t *game, int y, int x)
 {
     if (game->map[y][x] == 'X' && game->map_copy[y][x] == 'O')
