@@ -29,3 +29,23 @@ int print_win_csfml(game_t *game)
     sfFont_destroy(font);
     return 1;
 }
+
+int print_lose_csfml(game_t *game)
+{
+    sfText *text = NULL;
+    sfFont *font = NULL;
+
+    text = sfText_create();
+    font = sfFont_createFromFile("assets/Roboto-Black.ttf");
+    sfText_setFont(text, font);
+    sfText_setString(text, "You Lose !");
+    sfText_setCharacterSize(text, 50);
+    sfText_setPosition(text, (sfVector2f){
+        WIN_WIDTH / 2 - 100, WIN_HEIGHT / 2 - 25});
+    sfRenderWindow_drawText(game->csfml->window, text, NULL);
+    sfRenderWindow_display(game->csfml->window);
+    sleep(2);
+    sfText_destroy(text);
+    sfFont_destroy(font);
+    return 1;
+}

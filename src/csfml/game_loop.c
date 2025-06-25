@@ -79,6 +79,10 @@ int csfml_game_loop(game_t *game)
             sfRenderWindow_close(game->csfml->window);
             return 0;
         }
+        if (is_all_boxes_movable(game) == 1) {
+            print_lose_csfml(game);
+            reset_game(game);
+        }
     }
     return 0;
 }

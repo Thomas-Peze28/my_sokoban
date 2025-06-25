@@ -92,5 +92,7 @@ void add_random_walls(char **map, int width, int height);
 void place_boxes_and_storages(char **map, int width,
     int height, int box_count);
 int have_random_flag(char **argv);
+int is_all_boxes_movable(game_t *game);
+int print_lose_csfml(game_t *game);
 
 #endif /* SOKOBAN_H */

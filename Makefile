@@ -15,6 +15,7 @@ SRC	=	src/main.c	\
 		src/map/copy_map.c	\
 		src/map/display_map.c	\
 		src/map/count_box_storage.c	\
+		src/map/is_map_movable.c	\
 		src/player/find_player.c	\
 		src/player/move_player.c	\
 		src/player/check_player_move.c	\
