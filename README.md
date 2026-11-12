@@ -1,77 +1,66 @@
-![Logo](https://upload.wikimedia.org/wikipedia/commons/f/fe/Epitech_Official_Logo.png)
+# my_sokoban
 
-# My Sokoban
+A Sokoban puzzle game written in C, playable in the terminal (ncurses) or in a window (CSFML).
 
-## Description
+![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white)
+![ncurses](https://img.shields.io/badge/ncurses-333333?style=flat&logo=gnubash&logoColor=white)
+![CSFML](https://img.shields.io/badge/CSFML-8CC445?style=flat&logo=sfml&logoColor=white)
+![Epitech](https://img.shields.io/badge/Epitech-1st%20year-0B5AB4?style=flat)
 
-**My Sokoban** est une ré-implémentation du célèbre jeu Sokoban en C, jouable en mode texte (ncurses) ou en mode graphique (CSFML).  
-Le but du jeu est de pousser toutes les caisses (`X`) sur les emplacements de stockage (`O`) en un minimum de coups et de temps.
+> Epitech project · 1st year (2024–2025) · Solo project
 
-## Fonctionnalités
+## About
 
-- Mode terminal (ncurses) et mode graphique (CSFML)
-- Génération de cartes aléatoires avec `-r`
-- Sons (déplacement, collision, victoire)
-- Chronomètre et compteur de mouvements
-- Affichage du nombre de déplacements
-- Prise en charge des grandes cartes (adaptation de la taille des cellules)
-- Gestion des collisions et des règles classiques du Sokoban
+The player pushes boxes (`X`) onto storage locations (`O`) in a warehouse. The game is won when every box is stored, and lost when no box can be moved anymore. The mandatory part of the project is the ncurses version; I added a graphical CSFML mode, sounds and a random map generator on top of it.
 
-## Compilation
+## Features
 
-```sh
+- Terminal mode with ncurses, centred map and a "window too small" warning
+- Graphical mode with CSFML (`-csfml`), with cell size adapted to large maps
+- Random map generation (`-r`)
+- Win and lose detection
+- Move counter and timer
+- Sound effects for footsteps, collisions and victory
+- Map reset at any time
+
+## Screenshots
+
+![CSFML mode](https://github.com/user-attachments/assets/e4194157-bd5e-45da-bb55-31d0e8bc7c89)
+![Terminal mode](https://github.com/user-attachments/assets/72d845f0-33be-4807-96dd-08023157e757)
+
+## Getting started
+
+### Requirements
+
+- GCC and Make
+- ncurses (on Debian/Ubuntu: `sudo apt install libncurses-dev`)
+- [CSFML](https://www.sfml-dev.org/download/csfml/) (on Debian/Ubuntu: `sudo apt install libcsfml-dev`)
+
+### Build
+
+```bash
 make
 ```
 
-Le binaire sera généré sous le nom `my_sokoban`.
+### Usage
 
-## Dépendances
-
-- [ncurses](https://invisible-island.net/ncurses/)
-- [CSFML](https://www.sfml-dev.org/download/csfml/)
-
-## Utilisation
-
-```sh
-./my_sokoban <map_file> [options]
+```bash
+./my_sokoban map.txt            # terminal mode
+./my_sokoban map.txt -csfml     # graphical mode
+./my_sokoban -r -csfml          # random map, graphical mode
+./my_sokoban -h                 # print the usage
 ```
 
-### Options
+### Map format
 
-- `-h` : Affiche l’aide et quitte.
-- `-csfml` : Lance le jeu en mode graphique CSFML.
-- `-r` : Génère une carte aléatoire.
+| Character | Meaning |
+|-----------|---------|
+| `#` | Wall |
+| `P` | Player |
+| `X` | Box |
+| `O` | Storage location |
+| ` ` | Floor |
 
-### Exemples
-
-- Jouer une carte en mode ncurses :
-  ```sh
-  ./my_sokoban map.txt
-  ```
-- Jouer une carte en mode CSFML :
-  ```sh
-  ./my_sokoban map.txt -csfml
-  ```
-- Générer une carte aléatoire en mode CSFML :
-  ```sh
-  ./my_sokoban -r -csfml
-  ```
-
-## Commandes en jeu
-
-- **Flèches directionnelles** : déplacer le joueur
-- **Espace** : réinitialiser la carte
-- **q** : quitter la partie
-
-## Structure d’une carte
-
-- `#` : Mur
-- `P` : Joueur
-- `X` : Caisse
-- `O` : Emplacement de stockage
-- ` ` : Sol
-
-Exemple :
 ```
 ############
 #      X O #
@@ -86,14 +75,29 @@ Exemple :
 ############
 ```
 
-## Capture d'écran
+## Controls
 
-![Screenshot from 2025-06-24 15-08-34](https://github.com/user-attachments/assets/e4194157-bd5e-45da-bb55-31d0e8bc7c89)
+| Key | Action |
+|-----|--------|
+| Arrow keys | Move the player |
+| `Space` | Reset the map |
+| `q` | Quit |
 
-![Screenshot from 2025-06-24 15-07-47](https://github.com/user-attachments/assets/72d845f0-33be-4807-96dd-08023157e757)
+## Project structure
 
-## Auteurs
+```
+.
+├── src/
+│   ├── map/              # map loading, checks and display
+│   ├── map_generation/   # random map generator
+│   ├── player/           # movement and box pushing
+│   ├── csfml/            # graphical mode
+│   └── error_handling/   # arguments, map and sound checks
+├── include/              # headers
+├── lib/my/               # C utility library (libmy, my_printf)
+└── assets/               # textures, sounds and font
+```
 
-- [@Thomas-Peze](https://github.com/Thomas-Peze28)
+## Author
 
----
+- Thomas Pezé ([@Thomas-Peze28](https://github.com/Thomas-Peze28))
